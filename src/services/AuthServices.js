@@ -8,6 +8,7 @@ export const authService = {
       return d.user;
     } catch (error) {
       console.error(error);
+      throw error;
     }
   },
   register: async (payload) => {
@@ -15,6 +16,7 @@ export const authService = {
       const res = await axiosInstance.post("/auth/register/user", payload);
     } catch (error) {
       console.error(error);
+      throw error;
     }
   },
 
@@ -25,6 +27,7 @@ export const authService = {
       return user;
     } catch (error) {
       console.error(error);
+      throw error;
     }
   },
 };
