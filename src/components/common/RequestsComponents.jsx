@@ -5,21 +5,21 @@ import { Link, useLocation } from "react-router";
 export const RequestTabs = () => {
   const location = useLocation();
   const tabs = [
-    { name: "Requests", path: "/requests/assigned" },
-    { name: "Accepted", path: "/requests/accepted" },
+    { name: "Requests", path: "home/requests/assigned" },
+    { name: "Accepted", path: "home/requests/accepted" },
+   
   ];
-
-  console.log(location.pathname)
+  
 
   return (
     <div className="flex bg-brand-slate-100 p-1.5 rounded-2xl w-fit mx-auto mb-8 shadow-inner">
       {tabs.map((tab) => {
-        const isActive = location.pathname === tab.path;
-        console.log(tab.path)
+        const isActive = location.pathname == `/${tab.path}`;
+        
         return (
           <Link
             key={tab.path}
-            to={tab.path}
+           to={`/${tab.path}`}
             className={`px-8 py-2.5 text-xs font-black uppercase tracking-widest rounded-xl transition-all duration-300 ${
               isActive
                 ? "bg-white text-brand-red-600 shadow-sm scale-100"
@@ -56,7 +56,7 @@ export const RequestCard = ({ data, children, isAcceptedView = false }) => {
           {data.quantity}
         </div>
         <div className="text-[10px] font-bold text-brand-slate-400 uppercase">
-          Units
+          Pints
         </div>
       </div>
     </div>

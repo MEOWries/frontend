@@ -5,6 +5,7 @@ import App from "./App.jsx";
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Navigate,
   Route,
   RouterProvider,
 } from "react-router";
@@ -17,6 +18,7 @@ import { MyContextProvider } from "./utils/GlobalContext.jsx";
 import Requests from "./pages/Request_Donor/Requests.jsx";
 import AssignedRequests from "./pages/Request_Donor/AssignedRequests.jsx";
 import AcceptedRequests from "./pages/Request_Donor/AcceptedRequests.jsx";
+import Home from "./pages/Home.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import ProtectedRoutes from "./utils/ProtectedRoute.jsx";
 import OrgLayout from "./layouts/OrgLayout.jsx";
@@ -47,6 +49,9 @@ const router = createBrowserRouter(
             <Route path="accepted" element={<AcceptedRequests />} />
           </Route>
         </Route>
+        <Route path="history" element={<DonationHistory/>}/>
+        <Route path="notification" element={<Notification/>}/>
+        <Route path="profile" element={<Profile/>}/>
       </Route>
     </Route>,
   ),
