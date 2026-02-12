@@ -40,7 +40,6 @@ function Login() {
                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
                     <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full -ml-12 -mb-12"></div>
                 </div>
-
                 {/* Right Side: Login Form */}
                 <div className="flex-1 p-8 md:p-12 flex items-center">
                     <div className="w-full max-w-sm mx-auto">
@@ -118,10 +117,29 @@ function Login() {
                         </div>
                     </div>
                 </div>
+                {/* Remember Me Toggle */}
+                <div className="flex items-center">
+                    <input
+                        type="checkbox"
+                        id="remember"
+                        className="w-3 h-3 text-brand-red-600 border-brand-slate-300 rounded focus:ring-brand-red-600"
+                    />
+                    <label htmlFor="remember" className="ml-2 text-xs text-brand-slate-500 select-none">
+                        Keep me logged in
+                    </label>
+                </div>
 
-            </div>
+                <button
+                    type="submit"
+                    className="w-full bg-brand-red-600 hover:bg-brand-red-700 text-white font-semibold py-2.5 rounded-md transition-all mt-2 text-sm shadow-sm active:scale-[0.98]"
+                >
+                    Sign In
+                </button>
+
+            </form>
+        </div>
         </div >
-    )
+    ))
 }
 
 export default Login
