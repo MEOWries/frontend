@@ -135,7 +135,7 @@ function CreateDonorProfile() {
               Medical Deferral: You are currently ineligible.
             </div>
           ) : (
-            <Link to={"/requests/assigned"}>
+            <Link to={"/home/Dashboard"}>
             <button 
               disabled={!isMedicallyFit}
               className={`w-full py-4 rounded-2xl border-2 font-black text-xs uppercase tracking-widest transition-all ${isMedicallyFit ? 'bg-brand-red-600 text-white hover:shadow-2xl hover:shadow-brand-red-600/40 hover:-translate-y-1' : 'bg-brand-slate-200 text-brand-slate-400 cursor-not-allowed'}`}

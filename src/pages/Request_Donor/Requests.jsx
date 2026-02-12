@@ -5,7 +5,7 @@ import { RequestTabs } from '../../components/common/RequestsComponents';
 
 function Requests() {
   return (
-    <div className="min-h-screen bg-brand-slate-50 p-6 md:p-12 bg-[radial-gradient(circle_at_bottom_left,var(--color-brand-red-100)_0%,transparent_30%)]">
+    <div className="min-h-screen bg-brand-slate-50 p-6 md:p-12 ">
       <div className="max-w-5xl mx-auto">
         
         {/* Header Section */}

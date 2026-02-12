@@ -10,7 +10,8 @@ function AssignedRequests() {
       bloodType: "O+", 
       total: 4, 
       current: 3, // 3 out of 4 available
-      location: "Downtown Medical Center, NY" 
+      location: "Downtown Medical Center, NY",
+      urgency:1
     },
     { 
       id: 2, 
@@ -19,15 +20,16 @@ function AssignedRequests() {
       bloodType: "B-", 
       total: 10, 
       current: 2, // 2 out of 10 available
-      location: "North Wing Plaza, Suite 40" 
+      location: "North Wing Plaza, Suite 40" ,
+      urgency:2
     },
   ];
   return (
     <div className="grid grid-cols-1 gap-6 p-4">
-      {mockData.map((req) => (
+      {mockData.sort((a,b)=>b.urgency-a.urgency).map((req) => (
         <RequestCard key={req.id} data={req} isAcceptedView={false}>
           <button className="flex-1 bg-brand-slate-900 text-white text-[10px] font-black uppercase tracking-widest py-3 rounded-xl hover:bg-brand-slate-800 transition-all active:scale-95">
-            Decline
+            Unavailable
           </button>
           <button className="flex-2 bg-brand-red-600 text-white text-[10px] font-black uppercase tracking-widest py-3 rounded-xl hover:shadow-lg hover:shadow-brand-red-600/30 transition-all active:scale-95">
             Accept Request
