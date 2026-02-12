@@ -7,12 +7,14 @@ import UrgencyBadge from "../../components/common/Badge";
 import { useEffect } from "react";
 import { organizationService } from "../../services/OrganizationService";
 import { useState } from "react";
+import useMyContext from "../../hooks/UseMyContext";
 
 
 
 const DashboardHome = () => {
 
   const [stats,setStats] = useState({})
+  const {profile} = useMyContext()
 
   const navigate = useNavigate()
 

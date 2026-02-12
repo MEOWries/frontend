@@ -34,17 +34,17 @@ const router = createBrowserRouter(
       <Route index element={<LandingPage />} />
       <Route path="signup" element={<Signup />} />
       <Route path="login" element={<Login />} />
-      <Route path="organization" element={<OrgLayout />}>
-        <Route index element={<Navigate to="dashboard" replace />} />
-        <Route path="dashboard" element={<DashboardHome />} />
-        <Route path="create" element={<CreateRequest />} />
-        <Route path="active" element={<DashboardHome />} />
-        <Route path="matches" element={<DonorMatches />} />
-        <Route path="notifications" element={<DashboardHome />} />
-      </Route>
 
       <Route element={<ProtectedRoutes />}>
         <Route path="createDonorProfile" element={<CreateDonorProfile />} />
+        <Route path="organization" element={<OrgLayout />}>
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<DashboardHome />} />
+          <Route path="create" element={<CreateRequest />} />
+          <Route path="active" element={<DashboardHome />} />
+          <Route path="matches" element={<DonorMatches />} />
+          <Route path="notifications" element={<DashboardHome />} />
+        </Route>
         <Route path={"/donor"} element={<Home />}>
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />

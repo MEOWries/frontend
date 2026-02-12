@@ -4,6 +4,7 @@ import { authService } from "../services/AuthServices";
 import useMyContext from "../hooks/UseMyContext";
 import { Navigate } from "react-router-dom";
 import { DonorServices } from "../services/DonorServices";
+import { organizationService } from "../services/OrganizationService";
 
 function Login() {
   const { user, setUser, loading, setProfile } = useMyContext();
@@ -12,11 +13,17 @@ function Login() {
   const [loging, setLoging] = useState(false);
   const handlelogin = async () => {
     setLoging(true);
-    console.log(email, password);
     try {
       const user = await authService.login({ email, password });
-      const pD = await DonorServices.getDonorProfile();
-      setProfile(pD.user_details)
+      let pD = null;
+      if (user) {
+        if (user.role == "donor") {
+          pD = await DonorServices.getDonorProfile();
+        } else {
+          pD = await organizationService.getOrganizationProfile();
+        }
+      }
+      setProfile(pD);
       setUser(user);
       alert("Login Successful");
     } catch (e) {

@@ -17,7 +17,7 @@ export const organizationService = {
     try {
       const res = await axiosInstance.get("/organization/get-profile");
       const d = res.data.data;
-      return d;
+      return d.user_details;
     } catch (error) {
       console.error(error);
     }

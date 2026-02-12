@@ -1,5 +1,6 @@
 import axiosInstance from "../helpers/axiosHelper";
 import { DonorServices } from "./DonorServices";
+import { organizationService } from "./OrganizationService";
 
 export const authService = {
   login: async (payload) => {
@@ -25,8 +26,15 @@ export const authService = {
     try {
       const res = await axiosInstance.get("/auth/check-auth");
       const user = res.data.data.user;
-      const res1 = await DonorServices.getDonorProfile();
-      return { user, profile: res1.user_details };
+      let res1 = null;
+      if (user) {
+        if (user.role == "donor") {
+          res1 = await DonorServices.getDonorProfile();
+        } else {
+          res1 = await organizationService.getOrganizationProfile();
+        }
+      }
+      return { user, profile: res1 };
     } catch (error) {
       console.error(error);
       throw error;

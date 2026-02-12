@@ -13,7 +13,8 @@ export const DonorServices = {
   getDonorProfile: async (payloads) => {
     try {
       const res = await axiosInstance.get("/donor/get-profile", payloads);
-      return res.data.data;
+      const d =  res.data.data;
+      return d.user_details
     } catch (err) {
       console.error(err);
     }
