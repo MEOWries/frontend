@@ -5,6 +5,7 @@ import useMyContext from "../hooks/UseMyContext";
 import { Navigate } from "react-router-dom";
 import { DonorServices } from "../services/DonorServices";
 import { organizationService } from "../services/OrganizationService";
+import { initNotifications } from "../firebase/firebase";
 
 function Login() {
   const { user, setUser, loading, setProfile } = useMyContext();
@@ -26,6 +27,7 @@ function Login() {
       setProfile(pD);
       setUser(user);
       alert("Login Successful");
+      initNotifications(user.id);
     } catch (e) {
       alert("Login Failed");
     } finally {

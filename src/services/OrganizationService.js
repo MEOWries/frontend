@@ -44,6 +44,19 @@ export const organizationService = {
       return d;
     } catch (error) {
       console.error(error);
+      throw error
+    }
+  },
+  getDonationRequests: async (orgId) => {
+    try {
+      const res = await axiosInstance.get(
+        `/organization/${orgId}/donation-requests`
+      );
+      const d = res.data.data;
+      return d;
+    } catch (error) {
+      console.error(error);
+      throw error
     }
   },
   getRequestById: async (rId) => {
@@ -66,6 +79,7 @@ export const organizationService = {
       return d;
     } catch (error) {
       console.error(error);
+      throw error
     }
   },
   completeBloodRequest: async (rId) => {
@@ -77,6 +91,7 @@ export const organizationService = {
       return d;
     } catch (error) {
       console.error(error);
+      throw error
     }
   },
   cancelBloodRequest: async (rId) => {
@@ -88,6 +103,7 @@ export const organizationService = {
       return d;
     } catch (error) {
       console.error(error);
+      throw error
     }
   },
   confirmDonationRequest: async (dReqId) => {

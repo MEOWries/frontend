@@ -21,7 +21,7 @@ function CreateDonorProfile() {
     hasTattoos: null,
     hasDrugs: null,
   });
-  const { setProfile, setUser } = useMyContext();
+  const { setProfile, setUser,user } = useMyContext();
   const [creating, setCreating] = useState(false);
   const navigate = useNavigate();
 
@@ -41,7 +41,7 @@ function CreateDonorProfile() {
         profile_complete: res.user_details.user.profile_complete,
       }));
 
-      navigate("/dashboard");
+      navigate(`/${user.role}`);
       alert("Profile creation success!");
     } catch (error) {
       console.error(error);
