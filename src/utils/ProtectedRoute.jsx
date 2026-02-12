@@ -2,7 +2,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import useMyContext from "../hooks/UseMyContext";
 
 const ProtectedRoutes = () => {
-  const { user, loading } = useMyContext();
+  const { user, loading,profile } = useMyContext();
 
   if (loading) {
     return null;
@@ -10,7 +10,7 @@ const ProtectedRoutes = () => {
 
   if (
     user &&
-    !user.profile_complete &&
+    !profile.user.profile_complete &&
     location.pathname !== "/createDonorProfile"
   ) {
     return <Navigate to="/createDonorProfile" replace />;

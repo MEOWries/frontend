@@ -8,7 +8,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router";
-import {Navigate} from "react-router-dom"
+import { Navigate } from "react-router-dom";
 import LandingPage from "./pages/LandingPage.jsx";
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
@@ -25,8 +25,8 @@ import DashboardHome from "./pages/organization/DashboardHome.jsx";
 import CreateRequest from "./pages/organization/CreateRequest.jsx";
 import DonorMatches from "./pages/organization/DonorMatches.jsx";
 import DonationHistory from "./pages/DonationHistory.jsx";
-import Notification from "./pages/Notification.jsx";
 import Profile from "./pages/Profile.jsx";
+import Notification from "./pages/Notification.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -45,15 +45,17 @@ const router = createBrowserRouter(
 
       <Route element={<ProtectedRoutes />}>
         <Route path="createDonorProfile" element={<CreateDonorProfile />} />
-        <Route path="dashboard" element={<Dashboard />}>
+        <Route path={"/donor"} element={<Home />}>
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="requests" element={<Requests />}>
             <Route path="assigned" element={<AssignedRequests />} />
             <Route path="accepted" element={<AcceptedRequests />} />
           </Route>
+          <Route path="history" element={<DonationHistory />} />
+          <Route path="notification" element={<Notification />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
-        <Route path="history" element={<DonationHistory/>}/>
-        <Route path="notification" element={<Notification/>}/>
-        <Route path="profile" element={<Profile/>}/>
       </Route>
     </Route>,
   ),

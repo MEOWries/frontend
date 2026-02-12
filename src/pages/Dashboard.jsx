@@ -74,7 +74,7 @@ function Dashboard() {
             </p>
           </div>
           
-            <button onClick={()=>navigate("/home/requests/assigned")} className="relative z-10 mt-6 bg-white text-brand-red-600 font-black text-[10px] uppercase tracking-widest py-4 rounded-2xl hover:bg-brand-red-50 transition-all active:scale-95 shadow-lg">
+            <button onClick={()=>navigate("/donor/requests/assigned")} className="relative z-10 mt-6 bg-white text-brand-red-600 font-black text-[10px] uppercase tracking-widest py-4 rounded-2xl hover:bg-brand-red-50 transition-all active:scale-95 shadow-lg">
               View Live Requests
             </button>
           <div className="absolute top-0 right-0 p-4 text-6xl opacity-20">
