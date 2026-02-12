@@ -1,11 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
+import { authService } from "../services/AuthServices";
 
 function Signup() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [city, setCity] = useState("");
+  const [loading,setLoading] = useState(false)
+
   const navigate = useNavigate();
 
-  const handleLogin = (data) => {
-    navigate("/login");
+  const handleRegister = async () => {
+    let lat,
+      lng = 0;
+    await navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude, longitude } = pos.coords;
+        lat = latitude;
+        lng = longitude;
+      },
+      (err) => {
+        console.error("Location access denied");
+        alert("Please allow your location!")
+        return
+      },
+    );
+    const location = {
+      city,
+      lat,
+      lng,
+    };
+    setLoading(true)
+    try {
+      await authService.register({
+        email,
+        phone,
+        password,
+        role: "donor",
+        location,
+      });
+      alert("register successful!")
+      navigate("/login")
+    } catch (error) {
+      alert("Error registering!")
+
+    }finally{
+      setLoading(false)
+    }
   };
   return (
     // h-screen instead of min-h-screen to prevent unnecessary scrolling
@@ -57,7 +99,7 @@ function Signup() {
               className="space-y-3"
               onSubmit={(e) => {
                 e.preventDefault();
-                handleLogin("Login");
+                handleRegister();
               }}
             >
               <div className="grid grid-cols-2 gap-3">
@@ -67,6 +109,8 @@ function Signup() {
                   </label>
                   <input
                     type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="w-full px-3 py-2 text-sm rounded-md border border-brand-slate-500/20 focus:ring-1 focus:ring-brand-red-600 outline-none"
                     placeholder="name@mail.com"
                   />
@@ -77,6 +121,8 @@ function Signup() {
                   </label>
                   <input
                     type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
                     className="w-full px-3 py-2 text-sm rounded-md border border-brand-slate-500/20 focus:ring-1 focus:ring-brand-red-600 outline-none"
                     placeholder="9XXXXXXXXX"
                   />
@@ -89,15 +135,32 @@ function Signup() {
                 </label>
                 <input
                   type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full px-3 py-2 text-sm rounded-md border border-brand-slate-500/20 focus:ring-1 focus:ring-brand-red-600 outline-none"
+                  placeholder="••••••••"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] uppercase tracking-wider font-semibold text-brand-slate-500 mb-1">
+                  City
+                </label>
+                <input
+                  type="text"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
                   className="w-full px-3 py-2 text-sm rounded-md border border-brand-slate-500/20 focus:ring-1 focus:ring-brand-red-600 outline-none"
                   placeholder="••••••••"
                 />
               </div>
               <button
                 type="submit"
+                disabled={loading}
                 className="w-full bg-brand-red-600 hover:bg-brand-red-700 text-white font-semibold py-2.5 rounded-md transition-all mt-4 text-sm shadow-sm"
               >
-                Sign Up
+                {
+                  loading ?"Signing up..." : "Sign up"
+                }
               </button>
             </form>
 
