@@ -13,6 +13,10 @@ import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
 import CreateDonorProfile from "./pages/DonorProfileCreation.jsx";
 import { MyContextProvider } from "./utils/GlobalContext.jsx";
+import Requests from "./pages/Request_Donor/Requests.jsx";
+import AssignedRequests from "./pages/Request_Donor/AssignedRequests.jsx";
+import AcceptedRequests from "./pages/Request_Donor/AcceptedRequests.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,10 +24,12 @@ const router = createBrowserRouter(
       <Route path="" element={<LandingPage />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
-      <Route path="createDonorProfile" element={<CreateDonorProfile />} />
-      <Route path="/requests">
-        <Route path="/requests/assigned" />
-        <Route paths="/requests/accepted" />
+      <Route path="/createDonorProfile" element={<CreateDonorProfile />} />
+      <Route path="/dashboard" element={<Dashboard/>}>
+        <Route path="/dashboard/requests" element={<Requests />}>
+          <Route path="/requests/assigned" element={<AssignedRequests />} />
+          <Route path="/requests/accepted" element={<AcceptedRequests />} />
+        </Route>
       </Route>
     </Route>,
   ),
