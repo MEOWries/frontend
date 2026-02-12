@@ -55,4 +55,22 @@ export const DonorServices = {
       console.error(err);
     }
   },
+  getRequestsForDonor: async(donorId)=>{
+    try {
+      const res = await axiosInstance.get(`/donor/getRequestForDonor/${donorId}`)
+      return res.data.data;
+    } catch (error) {
+      console.error(error)
+    }
+  },
+  getDonorAcceptedRequest: async(reqId)=>{
+    try {
+      const res = await axiosInstance.get(`/organization/blood-requests/${reqId}`)
+      return res.data.data
+    } catch (error) {
+      console.error(error)
+    }
+  }
 };
+
+
