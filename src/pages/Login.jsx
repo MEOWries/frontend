@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 function Login() {
   return (
@@ -71,22 +72,23 @@ function Login() {
                   Keep me logged in
                 </label>
               </div>
-
+                <Link to="/createDonorProfile">
               <button 
                 type="submit" 
                 className="w-full bg-brand-red-600 hover:bg-brand-red-700 text-white font-semibold py-2.5 rounded-md transition-all mt-2 text-sm shadow-sm active:scale-[0.98]"
               >
                 Sign In
               </button>
+              </Link>
             </form>
 
             {/* Footer Link */}
             <div className="mt-8 pt-4 border-t border-brand-slate-50 text-center">
               <p className="text-xs text-brand-slate-500">
                 Don't have an account?{' '}
-                <a href="/signup" className="text-brand-red-600 font-bold hover:underline">
+                <Link to="/signup" className="text-brand-red-600 font-bold hover:underline">
                   Create Account
-                </a>
+                </Link>
               </p>
             </div>
           </div>

@@ -6,6 +6,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import LandingPage from './pages/LandingPage.jsx';
 import Signup from './pages/Signup.jsx';
 import Login from './pages/Login.jsx';
+import CreateDonorProfile from './pages/DonorProfileCreation.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -13,6 +14,11 @@ const router = createBrowserRouter(
       <Route path="" element={<LandingPage/>}/>
       <Route path="/signup" element={<Signup/>}/>
       <Route path="/login" element={<Login/>}/>
+      <Route path='createDonorProfile' element={<CreateDonorProfile/>}/>
+      <Route path='/requests'>
+      <Route path='/requests/assigned'/>
+      <Route paths='/requests/accepted'/>
+      </Route>
     </Route>
   )
 )
