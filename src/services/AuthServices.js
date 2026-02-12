@@ -8,6 +8,7 @@ export const authService = {
       return d.user;
     } catch (error) {
       console.error(error);
+      throw error
     }
   },
   register: async (payload) => {
