@@ -40,4 +40,22 @@
   --animate-fade-in: fade-in 0.5s ease-out forwards;
   --animate-float: float 3s ease-in-out infinite;
   --animate-pulse-light: pulse-light 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  /* ... your existing brand colors ... */
+  --shadow-glass: 0 8px 32px 0 rgba(15, 23, 42, 0.08);
+}
+
+/* Custom "Medical-Grade" Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f8fafc; /* brand-slate-50 */
+}
+::-webkit-scrollbar-thumb {
+  background: #dc2626; /* brand-red-600 */
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b91c1c; /* brand-red-700 */
 }
