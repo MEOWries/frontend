@@ -5,8 +5,8 @@ import { Link, useLocation } from "react-router";
 export const RequestTabs = () => {
   const location = useLocation();
   const tabs = [
-    { name: "Requests", path: "home/requests/assigned" },
-    { name: "Accepted", path: "home/requests/accepted" },
+    { name: "Requests", path: "donor/requests/assigned" },
+    { name: "Accepted", path: "donor/requests/accepted" },
    
   ];
   
