@@ -1,10 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router";
+import useMyContext from "../../hooks/UseMyContext";
 
 function Sidebar({ isOpen, toggleSidebar }) {
+  const{profile}=useMyContext()
   const links = [
     { name: "Dashboard", path: "/donor/Dashboard" },
-    { name: "Requests", path: "/donor/requests/assigned" },
+    { name: "Requests", path: `/donor/requests/assigned` },
     { name: "Notification", path: "/donor/notification" },
     { name: "History", path: "/donor/history" },
     { name: "Profile", path: "/donor/profile" },

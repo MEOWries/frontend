@@ -29,7 +29,7 @@ function Login() {
   if (loading) return null;
 
   if (user) {
-    return <Navigate to={"/dashboard"} replace />;
+    return <Navigate to={`/${user.role}`} replace />;
   }
   return (
     // h-screen ensures it takes exactly the viewport height
