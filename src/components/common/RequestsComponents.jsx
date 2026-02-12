@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router";
 
 // Modern Pill Tab Navigation
 export const RequestTabs = () => {
@@ -9,10 +9,13 @@ export const RequestTabs = () => {
     { name: "Accepted", path: "/requests/accepted" },
   ];
 
+  console.log(location.pathname)
+
   return (
     <div className="flex bg-brand-slate-100 p-1.5 rounded-2xl w-fit mx-auto mb-8 shadow-inner">
       {tabs.map((tab) => {
         const isActive = location.pathname === tab.path;
+        console.log(tab.path)
         return (
           <Link
             key={tab.path}
@@ -32,8 +35,10 @@ export const RequestTabs = () => {
 };
 
 // The Request Card Base
-export const RequestCard = ({ data, children }) => (
-  <div className="bg-white/80 backdrop-blur-md border border-white rounded-[2rem] p-6 shadow-glass animate-fade-in-up hover:shadow-xl transition-shadow group">
+export const RequestCard = ({ data, children, isAcceptedView = false }) => {
+    const progressPercentage = Math.min((data.current / data.total) * 100, 100);
+    return(
+  <div className="bg-white/80 backdrop-blur-md border border-white rounded-4xl p-6 shadow-glass animate-fade-in-up hover:shadow-xl transition-shadow group">
     <div className="flex justify-between items-start mb-4">
       <div>
         <span className="text-brand-red-600 font-black text-[10px] uppercase tracking-widest bg-brand-red-100 px-2 py-1 rounded-md">
@@ -60,22 +65,23 @@ export const RequestCard = ({ data, children }) => (
       <div className="flex items-center gap-2 text-brand-slate-600">
         <span className="text-sm">📍 {data.location}</span>
       </div>
-      <div className="flex items-center justify-between">
-        <span className="text-[11px] font-bold text-brand-slate-400 uppercase tracking-widest">
-          Progress
-        </span>
-        <span className="text-xs font-black text-brand-red-600">
-          {data.status}
-        </span>
+     <div className="flex items-center justify-between">
+          <span className="text-[11px] font-bold text-brand-slate-400 uppercase tracking-widest">
+            {isAcceptedView ? "Your Status" : "Availability"}
+          </span>
+          <span className={`text-xs font-black ${isAcceptedView ? 'text-green-600' : 'text-brand-red-600'}`}>
+             {isAcceptedView ? `Accepted • ${data.current}/${data.total} Units` : `${data.current}/${data.total} Available`}
+          </span>
+        </div>
+      {/* Dynamic Progress Bar */}
+        <div className="w-full h-2 bg-brand-slate-100 rounded-full overflow-hidden">
+          <div 
+            className={`h-full transition-all duration-1000 ease-out rounded-full ${isAcceptedView ? 'bg-green-500' : 'bg-brand-red-600'}`}
+            style={{ width: `${progressPercentage}%` }}
+          ></div>
+        </div>
       </div>
-      <div className="w-full h-1.5 bg-brand-slate-100 rounded-full overflow-hidden">
-        <div
-          className="h-full bg-brand-red-600 rounded-full"
-          style={{ width: "75%" }}
-        ></div>
-      </div>
-    </div>
 
     <div className="flex gap-3 mt-auto">{children}</div>
   </div>
-);
+);}
