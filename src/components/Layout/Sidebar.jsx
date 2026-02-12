@@ -3,11 +3,11 @@ import { NavLink } from "react-router";
 
 function Sidebar({ isOpen, toggleSidebar }) {
   const links = [
-    { name: "Dashboard", path: "/home/Dashboard" },
-    { name: "Requests", path: "/home/requests/assigned" },
-    { name: "Notification", path: "/home/notification" },
-    { name: "History", path: "/home/history" },
-    { name: "Profile", path: "/home/profile" },
+    { name: "Dashboard", path: "/donor/Dashboard" },
+    { name: "Requests", path: "/donor/requests/assigned" },
+    { name: "Notification", path: "/donor/notification" },
+    { name: "History", path: "/donor/history" },
+    { name: "Profile", path: "/donor/profile" },
   ];
   return (
     <>
