@@ -1,7 +1,6 @@
-/* eslint-disable no-undef */
 import axios from "axios";
 import Cookies from "js-cookie";
-// import process
+
 
 const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api/v1',
@@ -9,7 +8,6 @@ const axiosInstance = axios.create({
     timeout: 8000,
 });
 
-// Adds a request interceptor to include the Authorization token
 axiosInstance.interceptors.request.use(
     (config) => {
         const token = Cookies.get('accessToken')
@@ -21,7 +19,6 @@ axiosInstance.interceptors.request.use(
     (error) => Promise.reject(error)
 )
 
-//Adds a response interceptor for handling global errors
 axiosInstance.interceptors.response.use(
     (response) => response,
     (error) => {
