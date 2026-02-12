@@ -27,6 +27,7 @@ import DonorMatches from "./pages/organization/DonorMatches.jsx";
 import DonationHistory from "./pages/DonationHistory.jsx";
 import Profile from "./pages/Profile.jsx";
 import Notification from "./pages/Notification.jsx";
+import RequestsPage from "./pages/organization/ActiveRequests.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,8 +42,8 @@ const router = createBrowserRouter(
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<DashboardHome />} />
           <Route path="create" element={<CreateRequest />} />
-          <Route path="active" element={<DashboardHome />} />
-          <Route path="matches" element={<DonorMatches />} />
+          <Route path="requests" element={<RequestsPage />} />
+          <Route path="donation-requests" element={<DonorMatches />} />
           <Route path="notifications" element={<DashboardHome />} />
         </Route>
         <Route path={"/donor"} element={<Home />}>
@@ -60,6 +61,10 @@ const router = createBrowserRouter(
     </Route>,
   ),
 );
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/firebase-messaging-sw.js");
+}
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

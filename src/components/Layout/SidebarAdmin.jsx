@@ -34,8 +34,8 @@ export default function Sidebar({ sidebarOpen }) {
   const menuItems = [
     { icon: LayoutDashboard, label: "Overview", path: "/organization/dashboard" },
     { icon: PlusCircle, label: "New Request", path: "/organization/create" },
-    { icon: Activity, label: "Active Requests", path: "/organization/active" },
-    { icon: Users, label: "Donor Matches", path: "/organization/matches" },
+    { icon: Activity, label: "Blood Requests", path: "/organization/requests" },
+    { icon: Users, label: "Donation Requests", path: "/organization/donation-requests" },
     { icon: Bell, label: "Notifications", path: "/organization/notifications" },
   ];
 
