@@ -1,35 +1,34 @@
 import React from "react";
 import Button from "../components/common/Button.jsx";
+import { Link } from "react-router";
 
 function LandingPage() {
   return (
     <div className="min-h-screen bg-brand-slate-50 text-brand-slate-900 font-sans">
       {/* Header/Navbar Placeholder */}
-      <header className="bg-white shadow-sm py-4 px-6 md:px-12">
+      <header className="bg-white shadow-sm py-4 px-2 md:px-12 space-x-2">
         <nav className="max-w-7xl mx-auto flex justify-between items-center">
           <a href="/" className="text-2xl font-bold text-brand-red-600">
             BloodDonation
           </a>
           <div className="flex items-center space-x-4">
-            <Button
+           <Link to={"/login"}> <Button
               className="hidden md:block"
-              onClick={() => alert("Login Clicked")}
             >
               Login
             </Button>
-            <Button primary onClick={() => alert("Register Clicked")}>
+            </Link>
+            <Link to={"/signup"}>
+            <Button primary>
               Register
             </Button>
-            {/* Mobile Menu Icon Placeholder */}
-            <button className="md:hidden text-brand-slate-900 text-2xl">
-              ☰
-            </button>
+            </Link>
           </div>
         </nav>
       </header>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 md:py-32 bg-gradient-to-br from-brand-slate-50 to-white">
+      <section className="relative overflow-hidden py-20 md:py-32 bg-linear-to-br from-brand-slate-50 to-white">
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/2 text-center md:text-left animate-fade-in-up">
             <h1 className="text-5xl md:text-6xl font-extrabold text-brand-slate-900 leading-tight mb-4">
@@ -44,7 +43,6 @@ function LandingPage() {
             <div className="flex justify-center md:justify-start gap-4 animate-fade-in-up delay-200">
               <Button
                 primary="true"
-                onClick={() => alert("Register as Donor Clicked")}
               >
                 Register as a Donor
               </Button>
@@ -53,15 +51,20 @@ function LandingPage() {
           <div className="md:w-1/2 relative flex justify-center animate-fade-in-right">
             {/* Abstract Blood Drop / Medical Illustration */}
             <div
-              className="relative w-full max-w-md h-64 md:h-96 bg-brand-red-100 rounded-full flex items-center justify-center
+              className="hidden relative w-full max-w-md h-64 md:h-100 bg-brand-red-100 rounded-full lg:flex items-center justify-center
                           before:absolute before:inset-0 before:bg-brand-red-600 before:rounded-full before:animate-pulse-light before:opacity-10"
             >
               <img
                 src="donatingBlood.png" // Placeholder: Replace with an actual SVG/PNG
                 alt="Blood Donation Icon"
-                className="w-40 h-40 md:w-90 md:h-90 object-contain animate-float rounded-full  "
+                className="w-40 h-40 md:w-70 md:h-70 lg:w-90 lg:h-90 object-contain animate-float rounded-full  "
               />
             </div>
+               <img
+                src="donatingBlood.png" // Placeholder: Replace with an actual SVG/PNG
+                alt="Blood Donation Icon"
+                className="hidden md:flex lg:hidden w-70 h-70 object-contain animate-float rounded-full  "
+              />
           </div>
         </div>
       </section>
@@ -178,7 +181,7 @@ function LandingPage() {
           <div>
             <h4 className="text-xl font-bold mb-4">Contact Us</h4>
             <p className="text-brand-slate-500">info@blooddonation.com</p>
-            <p className="text-brand-slate-500">(123) 456-7890</p>
+            <p className="text-brand-slate-500">+977 9XXXXXXXXX</p>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-brand-slate-800 text-center text-brand-slate-500 text-sm">
