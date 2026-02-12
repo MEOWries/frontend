@@ -6,6 +6,7 @@ export const MyContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [acceptedRequestId, setAcceptedRequestsId] = useState(null);
 
   useEffect(() => {
     const checkauth = async () => {
@@ -30,6 +31,8 @@ export const MyContextProvider = ({ children }) => {
     user,
     profile,
     setProfile,
+    acceptedRequestId,
+    setAcceptedRequestsId
   };
 
   return (

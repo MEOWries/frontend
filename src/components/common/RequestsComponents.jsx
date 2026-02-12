@@ -36,24 +36,24 @@ export const RequestTabs = () => {
 
 // The Request Card Base
 export const RequestCard = ({ data, children, isAcceptedView = false }) => {
-    const progressPercentage = Math.min((data.current / data.total) * 100, 100);
+    const progressPercentage = Math.min((data.confirmed_units / data.quantity_units) * 100, 100);
     return(
   <div className="bg-white/80 backdrop-blur-md border border-white rounded-4xl p-6 shadow-glass animate-fade-in-up hover:shadow-xl transition-shadow group">
     <div className="flex justify-between items-start mb-4">
       <div>
         <span className="text-brand-red-600 font-black text-[10px] uppercase tracking-widest bg-brand-red-100 px-2 py-1 rounded-md">
-          {data.bloodType} Required
+          {data.blood_group} Required
         </span>
         <h3 className="text-xl font-black text-brand-slate-900 mt-2">
-          {data.patientName}
+          {data.patient_reference || "Patient"}
         </h3>
         <p className="text-xs font-bold text-brand-slate-500 uppercase tracking-tight">
-          {data.organization}
+          {data.organization_id}
         </p>
       </div>
       <div className="text-right">
         <div className="text-2xl font-black text-brand-slate-900">
-          {data.quantity}
+          {data.quantity_units}
         </div>
         <div className="text-[10px] font-bold text-brand-slate-400 uppercase">
           Pints
@@ -63,14 +63,14 @@ export const RequestCard = ({ data, children, isAcceptedView = false }) => {
 
     <div className="space-y-3 border-t border-brand-slate-100 pt-4 mb-6">
       <div className="flex items-center gap-2 text-brand-slate-600">
-        <span className="text-sm">📍 {data.location}</span>
+        <span className="text-sm">📍 {data.location?.lat}, {data.location?.lng}</span>
       </div>
      <div className="flex items-center justify-between">
           <span className="text-[11px] font-bold text-brand-slate-400 uppercase tracking-widest">
             {isAcceptedView ? "Your Status" : "Availability"}
           </span>
           <span className={`text-xs font-black ${isAcceptedView ? 'text-green-600' : 'text-brand-red-600'}`}>
-             {isAcceptedView ? `Accepted • ${data.current}/${data.total} Units` : `${data.current}/${data.total} Available`}
+             {isAcceptedView ? `Accepted • ${data.confirmed_units}/${data.quantity_units} Units` : `${data.confirmed_units}/${data.quantity_units} Available`}
           </span>
         </div>
       {/* Dynamic Progress Bar */}
@@ -82,6 +82,6 @@ export const RequestCard = ({ data, children, isAcceptedView = false }) => {
         </div>
       </div>
 
-    <div className="flex gap-3 mt-auto">{children}</div>
+     <div className="flex gap-3 mt-auto">{children}</div>
   </div>
-);}
+);};

@@ -50,7 +50,7 @@ const router = createBrowserRouter(
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="requests" element={<Requests />}>
-            <Route path="assigned" element={<AssignedRequests />} />
+            <Route path="assigned" element={<AssignedRequests /> }  />
             <Route path="accepted" element={<AcceptedRequests />} />
           </Route>
           <Route path="history" element={<DonationHistory />} />
