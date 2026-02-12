@@ -5,7 +5,6 @@ import App from "./App.jsx";
 import {
   createBrowserRouter,
   createRoutesFromElements,
-  Navigate,
   Route,
   RouterProvider,
 } from "react-router";
@@ -25,6 +24,9 @@ import OrgLayout from "./layouts/OrgLayout.jsx";
 import DashboardHome from "./pages/organization/DashboardHome.jsx";
 import CreateRequest from "./pages/organization/CreateRequest.jsx";
 import DonorMatches from "./pages/organization/DonorMatches.jsx";
+import DonationHistory from "./pages/DonationHistory.jsx";
+import Notification from "./pages/Notification.jsx";
+import Profile from "./pages/Profile.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
