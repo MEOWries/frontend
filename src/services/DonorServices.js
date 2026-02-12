@@ -3,7 +3,7 @@ import axiosInstance from "../helpers/axiosHelper.js";
 export const DonorServices = {
   completeDonorProfile: async (payloads) => {
     try {
-      const res = await axiosInstance.post("/complete-profile", payloads);
+      const res = await axiosInstance.post("/donor/complete-profile", payloads);
       return res.data.data;
     } catch (err) {
       console.error(err);
@@ -12,7 +12,7 @@ export const DonorServices = {
 
   getDonorProfile: async (payloads) => {
     try {
-      const res = await axiosInstance.get("/get-profile", payloads);
+      const res = await axiosInstance.get("/donor/get-profile", payloads);
       return res.data.data;
     } catch (err) {
       console.error(err);
@@ -20,7 +20,7 @@ export const DonorServices = {
   },
   toggleDonorAvailability: async (payloads) => {
     try {
-      const res = await axiosInstance.patch("/availability", payloads);
+      const res = await axiosInstance.patch("/donor/availability", payloads);
       return res.data.data;
     } catch (err) {
       console.error(err);
@@ -28,7 +28,7 @@ export const DonorServices = {
   },
   donorDashboard: async (payloads) => {
     try {
-      const res = await axiosInstance.get("/dashboard", payloads);
+      const res = await axiosInstance.get("/donor/dashboard", payloads);
       return res.data.data;
     } catch (err) {
       console.error(err);
@@ -37,7 +37,7 @@ export const DonorServices = {
   acceptRequest: async (donorId, rId) => {
     try {
       const res = await axiosInstance.post(
-        `/${donorId}/blood-requests/${rId}/accept`,
+        `/donor/${donorId}/blood-requests/${rId}/accept`,
       );
       return res.data.data;
     } catch (err) {
@@ -47,7 +47,7 @@ export const DonorServices = {
   declineRequest: async (donorId, rId) => {
     try {
       const res = await axiosInstance.post(
-        `/${donorId}/blood-requests/${rId}/decline`,
+        `/donor/${donorId}/blood-requests/${rId}/decline`,
       );
       return res.data.data;
     } catch (err) {

@@ -1,4 +1,5 @@
 import axiosInstance from "../helpers/axiosHelper";
+import { DonorServices } from "./DonorServices";
 
 export const authService = {
   login: async (payload) => {
@@ -23,8 +24,9 @@ export const authService = {
   checkAuthStatus: async () => {
     try {
       const res = await axiosInstance.get("/auth/check-auth");
-      const user = res.data.data;
-      return user;
+      const user = res.data.data.user;
+      const res1 = await DonorServices.getDonorProfile();
+      return { user, profile: res1.user_details };
     } catch (error) {
       console.error(error);
       throw error;
