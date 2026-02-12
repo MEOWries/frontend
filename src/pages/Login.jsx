@@ -1,24 +1,36 @@
 import React, { useState } from "react";
 import { Link } from "react-router";
 import { authService } from "../services/AuthServices";
+import useMyContext from "../hooks/UseMyContext";
+import { Navigate } from "react-router-dom";
+import { DonorServices } from "../services/DonorServices";
 
 function Login() {
+  const { user, setUser, loading, setProfile } = useMyContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const handleogin = async () => {
-    setLoading(true);
+  const [loging, setLoging] = useState(false);
+  const handlelogin = async () => {
+    setLoging(true);
     console.log(email, password);
     try {
       const user = await authService.login({ email, password });
-      console.log(email, password);
+      const pD = await DonorServices.getDonorProfile();
+      setProfile(pD.user_details)
+      setUser(user);
       alert("Login Successful");
     } catch (e) {
       alert("Login Failed");
     } finally {
-      setLoading(false);
+      setLoging(false);
     }
   };
+
+  if (loading) return null;
+
+  if (user) {
+    return <Navigate to={"/dashboard"} replace />;
+  }
   return (
     // h-screen ensures it takes exactly the viewport height
     <div className="h-screen bg-brand-slate-50 flex items-center justify-center p-4">
@@ -111,7 +123,7 @@ function Login() {
                 disabled={loading}
                 className="w-full bg-brand-red-600 hover:bg-brand-red-700 text-white font-semibold py-2.5 rounded-md transition-all mt-2 text-sm shadow-sm active:scale-[0.98]"
               >
-                {loading ? "Signing in.. " : "Sign in"}
+                {loging ? "Signing in.. " : "Sign in"}
               </button>
             </form>
 
