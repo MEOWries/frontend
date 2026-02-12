@@ -8,6 +8,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router";
+import {Navigate} from "react-router-dom"
 import LandingPage from "./pages/LandingPage.jsx";
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
@@ -17,18 +18,34 @@ import Requests from "./pages/Request_Donor/Requests.jsx";
 import AssignedRequests from "./pages/Request_Donor/AssignedRequests.jsx";
 import AcceptedRequests from "./pages/Request_Donor/AcceptedRequests.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
+import ProtectedRoutes from "./utils/ProtectedRoute.jsx";
+import OrgLayout from "./layouts/OrgLayout.jsx";
+import DashboardHome from "./pages/organization/DashboardHome.jsx";
+import CreateRequest from "./pages/organization/CreateRequest.jsx";
+import DonorMatches from "./pages/organization/DonorMatches.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route path="" element={<LandingPage />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/createDonorProfile" element={<CreateDonorProfile />} />
-      <Route path="/dashboard" element={<Dashboard/>}>
-        <Route path="/dashboard/requests" element={<Requests />}>
-          <Route path="/requests/assigned" element={<AssignedRequests />} />
-          <Route path="/requests/accepted" element={<AcceptedRequests />} />
+      <Route index element={<LandingPage />} />
+      <Route path="signup" element={<Signup />} />
+      <Route path="login" element={<Login />} />
+      <Route path="organization" element={<OrgLayout />}>
+        <Route index element={<Navigate to="dashboard" replace />} />
+        <Route path="dashboard" element={<DashboardHome />} />
+        <Route path="create" element={<CreateRequest />} />
+        <Route path="active" element={<DashboardHome />} />
+        <Route path="matches" element={<DonorMatches />} />
+        <Route path="notifications" element={<DashboardHome />} />
+      </Route>
+
+      <Route element={<ProtectedRoutes />}>
+        <Route path="createDonorProfile" element={<CreateDonorProfile />} />
+        <Route path="dashboard" element={<Dashboard />}>
+          <Route path="requests" element={<Requests />}>
+            <Route path="assigned" element={<AssignedRequests />} />
+            <Route path="accepted" element={<AcceptedRequests />} />
+          </Route>
         </Route>
       </Route>
     </Route>,

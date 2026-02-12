@@ -1,54 +1,66 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { authService } from "../services/AuthServices";
+import useMyContext from "../hooks/UseMyContext";
+import {Navigate} from "react-router-dom"
 
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
-  const [loading,setLoading] = useState(false)
+  const [registering, setRegistering] = useState(false);
+  const {user,loading} = useMyContext()
 
   const navigate = useNavigate();
 
   const handleRegister = async () => {
-    let lat,
-      lng = 0;
-    await navigator.geolocation.getCurrentPosition(
-      (pos) => {
+    if (!navigator.geolocation) {
+      alert("Geolocation not supported");
+      return;
+    }
+
+    setRegistering(true);
+
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
         const { latitude, longitude } = pos.coords;
-        lat = latitude;
-        lng = longitude;
+
+        const location = {
+          city,
+          lat: latitude,
+          lng: longitude,
+        };
+
+        try {
+          await authService.register({
+            email,
+            phone,
+            password,
+            role: "donor",
+            location,
+          });
+          alert("register successful!");
+          navigate("/login");
+        } catch (err) {
+          alert("Error registering!");
+        } finally {
+          setRegistering(false);
+        }
       },
-      (err) => {
-        console.error("Location access denied");
-        alert("Please allow your location!")
-        return
+      () => {
+        setRegistering(false);
+        alert("Please allow your location!");
       },
     );
-    const location = {
-      city,
-      lat,
-      lng,
-    };
-    setLoading(true)
-    try {
-      await authService.register({
-        email,
-        phone,
-        password,
-        role: "donor",
-        location,
-      });
-      alert("register successful!")
-      navigate("/login")
-    } catch (error) {
-      alert("Error registering!")
-
-    }finally{
-      setLoading(false)
-    }
   };
+
+   if (loading) return null;
+  
+    if (user) {
+      return <Navigate to={"/dashboard"} replace />;
+    }
+
   return (
     // h-screen instead of min-h-screen to prevent unnecessary scrolling
     <div className="h-screen bg-brand-slate-50 flex items-center justify-center p-4">
@@ -158,9 +170,7 @@ function Signup() {
                 disabled={loading}
                 className="w-full bg-brand-red-600 hover:bg-brand-red-700 text-white font-semibold py-2.5 rounded-md transition-all mt-4 text-sm shadow-sm"
               >
-                {
-                  loading ?"Signing up..." : "Sign up"
-                }
+                {registering ? "Signing up..." : "Sign up"}
               </button>
             </form>
 

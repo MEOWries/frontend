@@ -1,4 +1,4 @@
- {
+{
   "name": "blooddonation",
   "private": true,
   "version": "0.0.0",
@@ -14,9 +14,11 @@
     "axios": "^1.13.5",
     "firebase": "^12.9.0",
     "js-cookie": "^3.0.5",
+    "lucide-react": "^0.563.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router": "^7.13.0",
+    "react-router-dom": "^7.13.0",
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
